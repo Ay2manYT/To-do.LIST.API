@@ -1,3 +1,5 @@
+from pydantic import BaseModel
+
 from fastapi import FastAPI
 import json, os
 
@@ -10,13 +12,16 @@ def read():
 def write(data):
     json.dump(data, open(FILE, "w"), indent=2)
 
+class Notat(BaseModel): 
+    title:str
+    text:str
+
 @app.get("/notes")
 def get_notes():
     return read()
 
 @app.post("/notes")
-def create_note(note: dict):
-    data = read()
-    data.append(note)
-    write(data)
-    return note
+def create_note(data:Notat):
+        data = read()
+        data.append(data)
+        write(data)
