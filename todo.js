@@ -1,20 +1,32 @@
-function visOpprettNotat() {
-  alert("Her kan du lage notater. (Fiks senere med API)");
+const API = "http://127.0.0.1:8000/notat";
+
+// POST samme som post_note
+async function lagNotat() {
+  const title = document.getElementById("title").value;
+  const text = document.getElementById("text").value;
+
+  const res = await fetch(API, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ title, text })
+  });
+
+  console.log(res.status);
 }
 
-function visOpprettListe() {
-  alert("Her kan du lage todo-lister. (Fiks senere med API)");
-}
+// GET samme som get_notes
+async function hentNotater() {
+  const res = await fetch(API);
+  const data = await res.json();
 
-// Legg til ny oppgave i todo-liste 
-function leggTilOppgave() {
-  const oppgave = document.getElementById("ny-oppgave").value;
-  if (!oppgave) return;
+  const liste = document.getElementById("liste");
+  liste.innerHTML = "";
 
-  const container = document.getElementById("tasks-container");
-  const label = document.createElement("label");
-  label.innerHTML = `<input type="checkbox"> ${oppgave}`;
-  container.appendChild(label);
-
-  document.getElementById("ny-oppgave").value = "";
+  data.forEach(note => {
+    const li = document.createElement("li");
+    li.textContent = note.title + " - " + note.text;
+    liste.appendChild(li);
+  });
 }
