@@ -67,7 +67,7 @@ def hent_notat(note_id: int):
         cur.execute(
             "SELECT id, title, text FROM notes WHERE id = ?",
             (note_id,)
-        )
+        ) 
         row = cur.fetchone()
         if not row:
             raise HTTPException(status_code=404, detail="Not found")
