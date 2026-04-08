@@ -1,54 +1,452 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Epilogue:wght@300;400;500&display=swap');
+
+/* ── Variabler ── */
+:root {
+  --blå:         #1533d4;
+  --blå-lys:     #1e42f5;
+  --blå-mørk:    #0f1fa8;
+  --boble:       rgba(255,255,255,0.07);
+  --navy:        #0d1230;
+  --navy-kort:   rgba(255,255,255,0.04);
+  --gul:         #ffe135;
+  --gul-glow:    rgba(255,225,53,0.25);
+  --rød:         rgba(255, 80, 80, 0.85);
+  --rød-bg:      rgba(255, 80, 80, 0.1);
+  --rød-kant:    rgba(255, 80, 80, 0.25);
+  --hvit:        #ffffff;
+  --dempet:      rgba(255,255,255,0.45);
+  --kant:        rgba(255,255,255,0.08);
+  --radius:      28px;
+  --radius-sm:   14px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  font-family: 'Epilogue', sans-serif;
+  background: #080f2e;
+}
+
+/* ── Todelt layout ── */
+.side {
+  display: flex;
+  min-height: 100vh;
   padding: 20px;
 }
 
-h1 {
-  text-align: center;
+/* ── Felles panel ── */
+.panel {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  padding: 44px 48px;
 }
 
-.container {
-  max-width: 500px;
-  margin: auto;
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+/* ══════════════════════════════
+   VENSTRE PANEL
+══════════════════════════════ */
+.venstre {
+  background: linear-gradient(155deg, var(--blå-lys) 0%, var(--blå-mørk) 100%);
+  border-radius: var(--radius) 0 0 var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-input, textarea {
+.venstre::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(100,140,255,0.35) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 10% 80%, rgba(0,20,180,0.5) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.bobler {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.boble {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--boble);
+  border: 1.5px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(2px);
+}
+
+.venstre-innhold {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  height: 100%;
+  min-height: 420px;
 }
 
-button {
-  padding: 10px 15px;
-  margin-right: 10px;
-  border: none;
-  background-color: #007BFF;
-  color: white;
+.logo {
+  font-size: 2rem;
+  margin-bottom: auto;
+  filter: drop-shadow(0 4px 16px rgba(0,0,0,0.3));
+}
+
+.stor-tittel {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(3.0rem, 7vw, 5rem);
+  font-weight: 800;
+  color: var(--hvit);
+  line-height: 0.92;
+  letter-spacing: -3px;
+  text-shadow: 0 8px 40px rgba(0,0,40,0.4);
+  margin-bottom: auto;
+}
+.stor-tittel::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--gul);
+  border-radius: 2px;
+  margin-top: 20px;
+  box-shadow: 0 0 20px var(--gul-glow);
+}
+
+.prikker {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding-top: 32px;
+}
+.prikk {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.4);
+  background: transparent;
+}
+.prikk.aktiv {
+  background: var(--gul);
+  border-color: var(--gul);
+  width: 28px;
   border-radius: 5px;
+  box-shadow: 0 0 12px var(--gul-glow);
+}
+
+/* 
+   HØYRE PANEL
+*/
+.høyre {
+  background: var(--navy);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Nav */
+.topp-nav {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 36px;
+}
+.nav-streker {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.nav-streker span {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.25);
+}
+.nav-streker span:nth-child(1) { width: 32px; }
+.nav-streker span:nth-child(2) { width: 20px; }
+.nav-streker span:nth-child(3) { width: 32px; }
+
+.hamburger {
+  font-size: 1.4rem;
+  background: rgba(255,225,53,0.12);
+  border: 1px solid rgba(255,225,53,0.25);
+  color: var(--gul);
   cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.hamburger:hover {
+  background: rgba(255,225,53,0.22);
+  box-shadow: 0 0 16px var(--gul-glow);
+  transform: scale(1.07);
 }
 
-button:hover {
-  background-color: #0056b3;
+/* Meny */
+.meny {
+  position: relative;
+  z-index: 2;
+  background: rgba(255,255,255,0.05);
+  border-radius: var(--radius-sm);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 20px;
+  border: 1px solid var(--kant);
+  backdrop-filter: blur(10px);
+  animation: fadeNed 0.2s ease both;
+}
+.meny button {
+  font-family: 'Epilogue', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: none;
+  border: none;
+  color: var(--hvit);
+  padding: 11px 16px;
+  border-radius: 9px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s, color 0.15s;
+}
+.meny button:hover {
+  background: rgba(255,255,255,0.07);
+  color: var(--gul);
 }
 
-ul {
+/* Innhold */
+.høyre-innhold {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.panel-tittel {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.8rem);
+  font-weight: 800;
+  color: var(--hvit);
+  line-height: 1;
+  letter-spacing: -1.5px;
+  margin-bottom: 2px;
+}
+
+.panel-undertittel {
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--dempet);
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+/* Skjema */
+.skjema {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+.felt-gruppe {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+label {
+  font-size: 0.68rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--dempet);
+}
+input, textarea {
+  font-family: 'Epilogue', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 300;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--kant);
+  border-radius: var(--radius-sm);
+  padding: 13px 16px;
+  color: var(--hvit);
+  outline: none;
+  resize: vertical;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.2); }
+input:focus, textarea:focus {
+  border-color: rgba(255,225,53,0.5);
+  background: rgba(255,255,255,0.07);
+  box-shadow: 0 0 0 4px var(--gul-glow);
+}
+
+/* Knapper */
+.knapp-rad {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+.knapp-hoved, .knapp-sekundær {
+  font-family: 'Epilogue', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 13px 22px;
+  cursor: pointer;
+  flex: 1;
+  letter-spacing: 0.03em;
+  transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+}
+.knapp-hoved {
+  background: var(--gul);
+  color: #0a0f2a;
+  font-weight: 700;
+  box-shadow: 0 4px 20px var(--gul-glow);
+}
+.knapp-hoved:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(255,225,53,0.4);
+}
+.knapp-sekundær {
+  background: rgba(255,255,255,0.07);
+  color: var(--hvit);
+  border: 1px solid var(--kant);
+}
+.knapp-sekundær:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-3px);
+}
+.knapp-hoved:active, .knapp-sekundær:active { transform: translateY(0); }
+.tilbake { flex: none; align-self: flex-start; }
+
+/* ── Notatliste ── */
+#liste {
   list-style: none;
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  max-height: 48vh;
+  padding-right: 6px;
+}
+#liste::-webkit-scrollbar { width: 3px; }
+#liste::-webkit-scrollbar-track { background: transparent; }
+#liste::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.12);
+  border-radius: 3px;
 }
 
-li {
-  background: #eee;
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 5px;
+.notat-element {
+  background: var(--navy-kort);
+  border: 1px solid var(--kant);
+  border-left: 3px solid var(--gul);
+  border-radius: var(--radius-sm);
+  padding: 16px 18px;
+  animation: glideInn 0.3s ease both;
+  transition: background 0.2s, transform 0.2s, opacity 0.3s;
+}
+.notat-element:hover {
+  background: rgba(255,255,255,0.07);
+  transform: translateX(3px);
+}
+.notat-element.tom {
+  border-left-color: var(--kant);
+  opacity: 0.5;
+}
+
+/* Slette-animasjon */
+.notat-element.sletter {
+  opacity: 0;
+  transform: translateX(30px) scale(0.97);
+  pointer-events: none;
+}
+
+/* Notat-topp med tittel + slett-knapp */
+.notat-topp {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.notat-tittel {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--hvit);
+  letter-spacing: -0.2px;
+  flex: 1;
+}
+.notat-tekst {
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--dempet);
+  line-height: 1.6;
+}
+
+/* Slett-knapp */
+.slett-knapp {
+  background: var(--rød-bg);
+  border: 1px solid var(--rød-kant);
+  color: var(--rød);
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.slett-knapp:hover {
+  background: rgba(255, 80, 80, 0.25);
+  transform: scale(1.12);
+  box-shadow: 0 0 12px rgba(255, 80, 80, 0.3);
+}
+.slett-knapp:active { transform: scale(0.95); }
+
+/* ── Hjelpeklasser ── */
+.skjult { display: none !important; }
+
+/* ── Animasjoner ── */
+@keyframes fadeNed {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes glideInn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Responsiv ── */
+@media (max-width: 700px) {
+  .side { flex-direction: column; padding: 12px; }
+  .venstre {
+    border-radius: var(--radius) var(--radius) 0 0;
+    padding: 36px 32px 48px;
+    min-height: 220px;
+  }
+  .høyre {
+    border-radius: 0 0 var(--radius) var(--radius);
+    padding: 32px 28px;
+    border-left: none;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .stor-tittel { font-size: 3.5rem; }
 }

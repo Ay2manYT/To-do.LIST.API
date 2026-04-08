@@ -1,24 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Notater</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Epilogue:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  
-<h1>Notater</h1>
 
-<input id="title" placeholder="Tittel"><br><br>
-<textarea id="text" placeholder="Tekst"></textarea><br><br>
+  <div class="side">
 
-<button onclick="lagNotat()">Lagre</button>
-<button onclick="hentNotater()">Vis notater</button>
+    <!-- VENSTRE PANEL -->
+    <div class="panel venstre">
+      <div class="bobler">
+        <span class="boble" style="width:130px;height:130px;top:4%;left:58%"></span>
+        <span class="boble" style="width:75px;height:75px;top:18%;left:8%"></span>
+        <span class="boble" style="width:170px;height:170px;top:48%;left:48%"></span>
+        <span class="boble" style="width:55px;height:55px;top:72%;left:18%"></span>
+        <span class="boble" style="width:105px;height:105px;top:78%;left:72%"></span>
+        <span class="boble" style="width:85px;height:85px;top:33%;left:28%"></span>
+      </div>
+      <div class="venstre-innhold">
+        <div class="logo">📋</div>
+        <h1 class="stor-tittel">Notater</h1>
+        <div class="prikker">
+          <span class="prikk aktiv"></span>
+          <span class="prikk"></span>
+          <span class="prikk"></span>
+        </div>
+      </div>
+    </div>
 
-<ul id="liste"></ul>
+    <!-- HØYRE PANEL -->
+    <div class="panel høyre">
+      <nav class="topp-nav">
+        <div class="nav-streker">
+          <span></span><span></span><span></span>
+        </div>
+        <button class="hamburger" onclick="toggleMeny()">☰</button>
+      </nav>
 
-<script src="todo.js"></script>
+      <!-- Dropdown-meny -->
+      <div class="meny skjult" id="meny">
+        <button onclick="visSeksjon('skjema'); toggleMeny()">✏️ Nytt notat</button>
+        <button onclick="visSeksjon('liste'); hentNotater(); toggleMeny()">📄 Vis notater</button>
+      </div>
 
+      <!-- Skjema-seksjon -->
+      <div class="høyre-innhold" id="seksjon-skjema">
+        <h2 class="panel-tittel">Nytt<br><span>Notat</span></h2>
+        <p class="panel-undertittel">Fyll inn tittel og tekst nedenfor</p>
+        <div class="skjema">
+          <div class="felt-gruppe">
+            <label for="title">Tittel</label>
+            <input id="title" placeholder="Hva handler notatet om?" autocomplete="off">
+          </div>
+          <div class="felt-gruppe">
+            <label for="text">Tekst</label>
+            <textarea id="text" placeholder="Skriv notatet ditt her..." rows="4"></textarea>
+          </div>
+          <div class="knapp-rad">
+            <button class="knapp-hoved" onclick="lagNotat()">＋ Lagre</button>
+            <button class="knapp-sekundær" onclick="visSeksjon('liste'); hentNotater()">↓ Vis alle</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Liste-seksjon -->
+      <div class="høyre-innhold skjult" id="seksjon-liste">
+        <h2 class="panel-tittel">Alle<br><span>Notater</span></h2>
+        <p class="panel-undertittel">Klikk på søppelbøtten for å slette</p>
+        <ul id="liste"></ul>
+        <button class="knapp-sekundær tilbake" onclick="visSeksjon('skjema')">← Nytt notat</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="todo.js"></script>
 </body>
 </html>

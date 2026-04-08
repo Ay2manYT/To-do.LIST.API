@@ -25,3 +25,5 @@ def create_note(data:Notat):
         data = read()
         data.append(data)
         write(data)
+
+        
