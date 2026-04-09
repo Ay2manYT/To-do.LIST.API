@@ -1,7 +1,7 @@
-/* ── Google Fonts ── */
+
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Epilogue:wght@300;400;500&display=swap');
 
-/* ── Variabler ── */
+
 :root {
   --blå:         #1533d4;
   --blå-lys:     #1e42f5;
@@ -29,14 +29,14 @@ html, body {
   background: #080f2e;
 }
 
-/* ── Todelt layout ── */
+
 .side {
   display: flex;
   min-height: 100vh;
   padding: 20px;
 }
 
-/* ── Felles panel ── */
+
 .panel {
   flex: 1;
   position: relative;
@@ -44,9 +44,7 @@ html, body {
   padding: 44px 48px;
 }
 
-/* ══════════════════════════════
-   VENSTRE PANEL
-══════════════════════════════ */
+
 .venstre {
   background: linear-gradient(155deg, var(--blå-lys) 0%, var(--blå-mørk) 100%);
   border-radius: var(--radius) 0 0 var(--radius);
@@ -116,30 +114,7 @@ html, body {
   box-shadow: 0 0 20px var(--gul-glow);
 }
 
-.prikker {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  padding-top: 32px;
-}
-.prikk {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.4);
-  background: transparent;
-}
-.prikk.aktiv {
-  background: var(--gul);
-  border-color: var(--gul);
-  width: 28px;
-  border-radius: 5px;
-  box-shadow: 0 0 12px var(--gul-glow);
-}
 
-/* 
-   HØYRE PANEL
-*/
 .høyre {
   background: var(--navy);
   border-radius: 0 var(--radius) var(--radius) 0;
@@ -148,7 +123,7 @@ html, body {
   border-left: 1px solid rgba(255,255,255,0.06);
 }
 
-/* Nav */
+
 .topp-nav {
   position: relative;
   z-index: 2;
@@ -192,7 +167,7 @@ html, body {
   transform: scale(1.07);
 }
 
-/* Meny */
+
 .meny {
   position: relative;
   z-index: 2;
@@ -225,7 +200,7 @@ html, body {
   color: var(--gul);
 }
 
-/* Innhold */
+
 .høyre-innhold {
   position: relative;
   z-index: 1;
@@ -253,7 +228,7 @@ html, body {
   margin-bottom: 6px;
 }
 
-/* Skjema */
+
 .skjema {
   display: flex;
   flex-direction: column;
@@ -292,7 +267,7 @@ input:focus, textarea:focus {
   box-shadow: 0 0 0 4px var(--gul-glow);
 }
 
-/* Knapper */
+
 .knapp-rad {
   display: flex;
   gap: 10px;
@@ -332,7 +307,7 @@ input:focus, textarea:focus {
 .knapp-hoved:active, .knapp-sekundær:active { transform: translateY(0); }
 .tilbake { flex: none; align-self: flex-start; }
 
-/* ── Notatliste ── */
+
 #liste {
   list-style: none;
   display: flex;
@@ -367,14 +342,14 @@ input:focus, textarea:focus {
   opacity: 0.5;
 }
 
-/* Slette-animasjon */
+
 .notat-element.sletter {
   opacity: 0;
   transform: translateX(30px) scale(0.97);
   pointer-events: none;
 }
 
-/* Notat-topp med tittel + slett-knapp */
+
 .notat-topp {
   display: flex;
   align-items: center;
@@ -398,7 +373,7 @@ input:focus, textarea:focus {
   line-height: 1.6;
 }
 
-/* Slett-knapp */
+
 .slett-knapp {
   background: var(--rød-bg);
   border: 1px solid var(--rød-kant);
@@ -421,10 +396,10 @@ input:focus, textarea:focus {
 }
 .slett-knapp:active { transform: scale(0.95); }
 
-/* ── Hjelpeklasser ── */
+
 .skjult { display: none !important; }
 
-/* ── Animasjoner ── */
+
 @keyframes fadeNed {
   from { opacity: 0; transform: translateY(-8px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -434,7 +409,7 @@ input:focus, textarea:focus {
   to   { opacity: 1; transform: translateX(0); }
 }
 
-/* ── Responsiv ── */
+
 @media (max-width: 700px) {
   .side { flex-direction: column; padding: 12px; }
   .venstre {

@@ -13,7 +13,7 @@
 
   <div class="side">
 
-    <!-- VENSTRE PANEL -->
+    <!-- Venstre panel, bobler for en smooth effekt -->
     <div class="panel venstre">
       <div class="bobler">
         <span class="boble" style="width:130px;height:130px;top:4%;left:58%"></span>
@@ -23,18 +23,15 @@
         <span class="boble" style="width:105px;height:105px;top:78%;left:72%"></span>
         <span class="boble" style="width:85px;height:85px;top:33%;left:28%"></span>
       </div>
+
+      <!-- Venstre panel som innholder logo og tekst og en strek for en skarp utseende -->
       <div class="venstre-innhold">
         <div class="logo">📋</div>
         <h1 class="stor-tittel">Notater</h1>
-        <div class="prikker">
-          <span class="prikk aktiv"></span>
-          <span class="prikk"></span>
-          <span class="prikk"></span>
-        </div>
       </div>
     </div>
 
-    <!-- HØYRE PANEL -->
+    <!-- Høyre panel som innholder nav streker for definisjon og overskrift -->
     <div class="panel høyre">
       <nav class="topp-nav">
         <div class="nav-streker">
@@ -43,13 +40,13 @@
         <button class="hamburger" onclick="toggleMeny()">☰</button>
       </nav>
 
-      <!-- Dropdown-meny -->
+      <!-- Dropdown meny -->
       <div class="meny skjult" id="meny">
         <button onclick="visSeksjon('skjema'); toggleMeny()">✏️ Nytt notat</button>
         <button onclick="visSeksjon('liste'); hentNotater(); toggleMeny()">📄 Vis notater</button>
       </div>
 
-      <!-- Skjema-seksjon -->
+      <!-- Skjema seksjon der brukeren kan skrive inn ny notat ved hjelp av javascript-->
       <div class="høyre-innhold" id="seksjon-skjema">
         <h2 class="panel-tittel">Nytt<br><span>Notat</span></h2>
         <p class="panel-undertittel">Fyll inn tittel og tekst nedenfor</p>
@@ -69,7 +66,7 @@
         </div>
       </div>
 
-      <!-- Liste-seksjon -->
+      <!-- Liste seksjon der ma kan se alle listene og notatene som ble laget -->
       <div class="høyre-innhold skjult" id="seksjon-liste">
         <h2 class="panel-tittel">Alle<br><span>Notater</span></h2>
         <p class="panel-undertittel">Klikk på søppelbøtten for å slette</p>
