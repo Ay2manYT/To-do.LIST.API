@@ -1,4 +1,4 @@
-const API = "http://127.0.0.1:8000/notat";
+const API = "http://192.168.20.63:8000/notat";
 
 // ── Navigasjon ──
 function visSeksjon(navn) {
