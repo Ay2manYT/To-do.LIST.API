@@ -22,3 +22,25 @@ Deretter kan du lage et virtuelt miljø (valgfritt):
 
 ```bash
 python -m venv venv
+
+```bash
+venv\Scripts\activate
+
+```bash
+pip install flask flask-cors
+
+```bash
+pip install fastapi uvicorn
+
+```bash
+python app.py
+
+```bash 
+uvicorn main:app --reload
+
+Når serveren kjører, vil den vanligvis være tilgjengelig på
+````
+http://127.0.0.1:8000
+```
+
+## API-et brukes til å håndtere oppgaver i applikasjonen ved at frontend sender forespørsler til backend. For eksempel kan brukeren hente alle oppgaver som er lagret, legge til en ny oppgave ved å skrive inn tekst, oppdatere en eksisterende oppgave eller slette en oppgave. Backend behandler disse forespørslene og sender tilbake oppdatert data, slik at endringene vises direkte i brukergrensesnittet uten at siden må lastes på nytt.
